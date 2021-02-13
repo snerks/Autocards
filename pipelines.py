@@ -138,8 +138,14 @@ class QGPipeline:
                 sents_copy = sents[:]
                 
                 answer_text = answer_text.strip()
-                
-                ans_start_idx = sent.index(answer_text)
+
+                if answer_text.startswith('<pad> '):
+                    answer_text = answer_text[6:]
+
+                if answer_text in sent: 
+                    ans_start_idx = sent.lower().index(answer_text.lower())
+                else:
+                    continue
                 
                 sent = f"{sent[:ans_start_idx]} <hl> {answer_text} <hl> {sent[ans_start_idx + len(answer_text): ]}"
                 sents_copy[i] = sent
@@ -305,7 +311,7 @@ SUPPORTED_TASKS = {
     }
 }
 
-def pipeline(
+def qg_pipeline(
     task: str,
     model: Optional = None,
     tokenizer: Optional[Union[str, PreTrainedTokenizer]] = None,
