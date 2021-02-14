@@ -6,7 +6,7 @@ import csv
 
 class Autocards:
     def __init__(self):
-        self.qg = qg_pipeline('question-generation', model='valhalla/t5-base-qg-hl', ans_model='valhalla/t5-base-qa-qg-hl')
+        self.qg = qg_pipeline('question-generation', model='valhalla/t5-base-qg-hl', ans_model='valhalla/t5-small-qa-qg-hl')
         self.qa_pairs = []
 
     def consume_text(self, text, per_paragraph=False):
