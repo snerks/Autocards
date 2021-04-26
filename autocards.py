@@ -2,7 +2,8 @@ from pipelines import qg_pipeline
 from transformers import pipeline
 from bs4 import BeautifulSoup
 import csv
-
+import nltk
+# nltk.download('punkt')
 
 class Autocards:
     def __init__(self):
